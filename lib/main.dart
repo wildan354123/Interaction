@@ -1,34 +1,24 @@
 import 'package:flutter/material.dart';
-
 void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Interaction',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+  runApp(
+    const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: HomeScreen(),
-    );
-  }
+    ),
+  );
 }
-
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
-
 class _HomeScreenState extends State<HomeScreen> {
   String actionLabel = 'Belum ada aksi';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Interaction'),
+        title: const Text('Interaction'),
       ),
       body: Center(
         child: Column(
@@ -37,30 +27,36 @@ class _HomeScreenState extends State<HomeScreen> {
             GestureDetector(
               onTap: (){
                 setState(() {
-                  actionLabel= 'Pengguna melakukan tap';
+                  actionLabel = 'Pengguna melakukan Tap';
                 });
               },
-              onDoubleTap: () {
+              onDoubleTap: (){
                 setState(() {
-                  actionLabel='Pengguna melakukan tap';
+                  actionLabel = 'Pengguna melakukan Double Tap';
                 });
               },
-              onLongPress: () {
-                actionLabel='pengguna melakukan tap';
+              onLongPress: (){
+                setState(() {
+                  actionLabel = 'Pengguna melakukan Long Press';
+                });
               },
               child: Container(
                 height: 50,
                 width: 150,
                 decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(25)),
-                child: Text('Aksi', style: TextStyle(
-                  color: Colors.white,
+                    shape: BoxShape.rectangle,
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(25)),
+                child: const Center(
+                  child: Text(
+                    'Aksi',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
-                ),
-                ),
+              ),
             ),
+            const SizedBox(height: 16),
+            Text(actionLabel),
           ],
         ),
       ),
